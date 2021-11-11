@@ -2,9 +2,9 @@
 
 
 SpringBoot application that uses :
-  -springMvcRest 
-  -Spring Data Jpa
-  -Hibernate
+  - springMvcRest 
+  - Spring Data Jpa
+  - Hibernate
   - springBoot 
   - Lombok 
   - Junit
