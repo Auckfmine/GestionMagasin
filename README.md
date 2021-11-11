@@ -1,4 +1,10 @@
 # GestionMagasin
 
 
-SpringBoot application that uses springMvcRest / springBoot /Lombok /Junit
+SpringBoot application that uses :
+  -springMvcRest 
+  -Spring Data Jpa
+  -Hibernate
+  - springBoot 
+  - Lombok 
+  - Junit
