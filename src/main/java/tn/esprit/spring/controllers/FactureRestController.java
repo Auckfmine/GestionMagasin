@@ -22,6 +22,8 @@ public class FactureRestController {
         return listFactures;
     }
 
+
+
     //localhost:8098/facture/cancel-facture/idFacture
     @GetMapping("/cancel-facture/{idFacture}")
     @ResponseBody
@@ -35,4 +37,12 @@ public class FactureRestController {
     public Facture retrieveFacture(@PathVariable("idFacture")Long idFacture){
         return serviceFacture.retrieveFacture(idFacture);
     }
+    //Services Avancés  :
+        //localhost:8098/facture/add-facture/{id_client}/
+        @PostMapping("/add-facture/{id_client}/")
+        @ResponseBody
+        public Facture addFacture(@RequestBody Facture f ,@PathVariable("id_client")long idClient) {
+            System.out.println(f.toString());
+            return serviceFacture.addFacture(f,idClient);
+        }
 }

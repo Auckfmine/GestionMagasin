@@ -2,9 +2,11 @@ package tn.esprit.spring.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.entities.CategoryClient;
 import tn.esprit.spring.entities.Client;
 import tn.esprit.spring.services.IServiceClient;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,7 +37,7 @@ public class ClientRestController {
     public Client addClient(@RequestBody Client c)
     {
         Client client = clientService.addClient(c);
-        System.out.println(client.toString());
+
         return client;
     }
 
@@ -58,7 +60,15 @@ public class ClientRestController {
     }
 
 
+    // http://localhost:8089/SpringMVC/client/getChiffreAffaireParCategorieClient/{start_date}/{end_date}/
+    @PostMapping("/getChiffreAffaireParCategorieClient/{start_date}/{end_date}/")
+    @ResponseBody
+    public float getChiffreAffaireParCategorieClient(@RequestBody CategoryClient categoryClient ,@PathVariable("start_date") Date startDate ,@PathVariable("end_date") Date endDate)
+    {
 
+
+        return clientService.getChiffreAffaireParCategorieClient(categoryClient, startDate, endDate);
+    }
 
 
 }

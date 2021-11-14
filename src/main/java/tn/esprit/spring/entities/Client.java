@@ -1,12 +1,14 @@
 package tn.esprit.spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.deser.std.EnumDeserializer;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table
@@ -32,12 +34,21 @@ public class Client implements Serializable {
     private String password;
 
     @Enumerated(EnumType.STRING)
+
     private CategoryClient categoryClient;
     @Enumerated(EnumType.STRING)
     private Profession profession;
-    @OneToMany(mappedBy = "client")
-    private Set<Facture>factures;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    
+    private List<Facture> factures= new ArrayList<Facture>();
 
+    public List<Facture> getFactures() {
+        return factures;
+    }
+
+    public void setFactures(List<Facture> factures) {
+        this.factures = factures;
+    }
 
 
 }

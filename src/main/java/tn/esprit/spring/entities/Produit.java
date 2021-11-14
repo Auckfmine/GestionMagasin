@@ -1,9 +1,13 @@
 package tn.esprit.spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,15 +24,28 @@ public class Produit implements Serializable {
     private String codeProduit;
     private String libelleProduit;
     private float prixUnitaire;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("produit")
     private DetailProduit detailProduit;
+    public DetailProduit getDetailProduit() {
+        return detailProduit;
+    }
+    public void setDetailProduit(DetailProduit detailProduit) {
+        this.detailProduit = detailProduit;
+    }
     @ManyToOne
+    @JsonIgnoreProperties("produits")
     private Stock stock;
     @ManyToOne
+    @JsonIgnoreProperties("produits") //pour eviter la dependance circulaire car on a une relation bidirectional
     private Rayon rayon;
-    @ManyToMany
-    private Set<Fournisseur>fournisseurs;
-    @OneToMany(mappedBy = "produit")
-    private Set<DetailFacture> detailFactures;
+    @ManyToMany(fetch =FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Fournisseur> fournisseurs=new ArrayList<Fournisseur>();
+    @OneToMany(mappedBy = "produit",cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("produit")
+    private List<DetailFacture> detailFactures=new ArrayList<DetailFacture>();
 
+    public Produit(long idProduit) {
+        this.idProduit = idProduit;
+    }
 }
