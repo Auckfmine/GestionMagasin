@@ -13,28 +13,33 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
+
+@RequiredArgsConstructor
+
+
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private long IdClient;
-
+    @NotNull
     private String nom;
-
+    @NotNull
     private String prenom;
-
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
-
+    @NotNull
     private String email;
-
+    @NotNull
     private String password;
-
+    @NotNull
     @Enumerated(EnumType.STRING)
     private CategoryClient categoryClient;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Profession profession;
+
     @OneToMany(mappedBy = "client")
     private Set<Facture>factures;
 
