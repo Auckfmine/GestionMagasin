@@ -37,7 +37,7 @@ public class StockRestController {
 
     //localhost:8089/stock/add-stock
 
-    @PostMapping("/add-post")
+    @PostMapping("/add-stock")
     @ResponseBody
 
     public Stock addStock(@RequestBody Stock stock){
