@@ -13,6 +13,6 @@ import java.util.List;
 public interface ClientRepository extends CrudRepository<Client,Long> {
 
 
-    @Query("SELECT  c.factures   FROM Client c where c.categoryClient =: categorieClient ")
-    List <Facture> getClientsByCategory(@Param("categoryClient") CategoryClient categorieClient);
+    @Query("SELECT  f   FROM Facture f where f.client.categoryClient =: categorieClient ")
+    List <Facture> getFacturesByCategoryClient(@Param("categoryClient") CategoryClient categorieClient);
 }

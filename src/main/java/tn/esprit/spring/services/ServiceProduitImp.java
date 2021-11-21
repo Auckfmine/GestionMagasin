@@ -86,8 +86,6 @@ public class ServiceProduitImp implements IServiceProduit{
           }
 
        }
-
-
        return total ;
     }
 

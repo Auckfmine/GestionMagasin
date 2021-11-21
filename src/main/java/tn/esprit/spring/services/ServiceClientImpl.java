@@ -46,9 +46,10 @@ public class ServiceClientImpl implements IServiceClient {
     @Override
     public float getChiffreAffaireParCategorieClient(CategoryClient categorieClient, Date startDate, Date endDate) {
         float chiffre_affaire = 0;
-        List<Facture> factures =repository.getClientsByCategory(categorieClient);
+        //on a utilise une (helper function) pour recuperé tous les factures d'une category de clients
+        List<Facture> factures =repository.getFacturesByCategoryClient(categorieClient);
         for(Facture facture : factures){
-            if(facture.getDateFacture().compareTo(startDate)>0 && facture.getDateFacture().compareTo(endDate)<0){
+            if(facture.getDateFacture().compareTo(startDate)>0 && facture.getDateFacture().compareTo(endDate)<0 && facture.getActive()){
                 chiffre_affaire+=facture.getMontantFacture();
             }
         }

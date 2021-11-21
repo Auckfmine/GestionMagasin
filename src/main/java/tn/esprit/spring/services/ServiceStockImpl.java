@@ -1,6 +1,7 @@
 package tn.esprit.spring.services;
 
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import tn.esprit.spring.repository.StockRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+@Slf4j
 @Service
 public class ServiceStockImpl implements IServiceStock{
     @Autowired
@@ -40,14 +42,13 @@ public class ServiceStockImpl implements IServiceStock{
 
     @Override
 
+@Scheduled(cron = "* * 22 * * *")
     public String retreiveStockStatus() {
         repository.getStatusStock().forEach(stock -> {
-            System.out.println("sotck "+stock.getLibelleStock() +"est epuisé");
+           log.warn("sotck "+stock.getLibelleStock() +"est epuisé");
         });
-
-
-
-
-        return
+        return "";
     }
+
+
 }
