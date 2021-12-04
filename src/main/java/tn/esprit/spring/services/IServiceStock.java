@@ -12,6 +12,7 @@ public interface IServiceStock {
     Stock updateStock(Stock u);
 
     Stock retrieveStock(Long id);
+    void deleteStock(long id);
 
     String retreiveStockStatus();
 }

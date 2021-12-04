@@ -41,6 +41,11 @@ public class ServiceStockImpl implements IServiceStock{
     }
 
     @Override
+    public void deleteStock(long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
 
 @Scheduled(cron = "* * 22 * * *")
     public String retreiveStockStatus() {
